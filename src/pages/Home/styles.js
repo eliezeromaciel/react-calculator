@@ -27,6 +27,9 @@ export const ResultContainer = styled.div`
     width: 100%;
     border-radius: 8px;
     height: 50px;
+    justify-content: center;
+    font-size:25px;
+    align-items:flex-end;
 
 `
 
