@@ -80,31 +80,31 @@ export function Home() {
                 </ResultContainer>
 
                 <NumbersContainer>
-                    <Button onClick={ ()=> {handleClickOperator("/")}}>/</Button>
+                    <Button isMathOperator onClick={ ()=> {handleClickOperator("/")}}>/</Button>
                 </NumbersContainer>
                 <NumbersContainer>
                     <Button onClick={ ()=> {handleClickNumber(1)}} >1</Button>
                     <Button onClick={ ()=> {handleClickNumber(2)}} >2</Button>
                     <Button onClick={ ()=> {handleClickNumber(3)}} >3</Button>
-                    <Button onClick={ ()=> {handleClickOperator("*")}}>x</Button>
+                    <Button isMathOperator onClick={ ()=> {handleClickOperator("*")}}>x</Button>
                 </NumbersContainer>
                 <NumbersContainer>
                     <Button onClick={ ()=> {handleClickNumber(4)}}>4</Button>
                     <Button onClick={ ()=> {handleClickNumber(5)}}>5</Button>
                     <Button onClick={ ()=> {handleClickNumber(6)}}>6</Button>
-                    <Button onClick={ ()=> {handleClickOperator("-")}}>-</Button>
+                    <Button isMathOperator onClick={ ()=> {handleClickOperator("-")}}>-</Button>
                 </NumbersContainer>
                 <NumbersContainer>
                     <Button onClick={ ()=> {handleClickNumber(7)}}>7</Button>
                     <Button onClick={ ()=> {handleClickNumber(7)}}>8</Button>
                     <Button onClick={ ()=> {handleClickNumber(9)}}>9</Button>
-                    <Button onClick={ ()=> {handleClickOperator("+")}}>+</Button>
+                    <Button isMathOperator onClick={ ()=> {handleClickOperator("+")}}>+</Button>
                 </NumbersContainer>
                 <NumbersContainer>
                     <Button>.</Button>
                     <Button onClick={ ()=> {handleClickNumber(0)}}>0</Button>
-                    <Button onClick={()=> {handleClickAC()}}>AC</Button>
-                    <Button onClick={()=>{handleClickResult()}}>=</Button>
+                    <Button isMathOperator onClick={()=> {handleClickAC()}}>AC</Button>
+                    <Button isMathOperator onClick={()=>{handleClickResult()}}>=</Button>
                 </NumbersContainer>
 
 
