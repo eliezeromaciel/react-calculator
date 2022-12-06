@@ -1,16 +1,25 @@
 import React, { useState } from "react";
-import { CalcContainer, Header, NumbersContainer, ResultContainer } from "./styles"
 import { Button } from "../../components/Button";
+import { Title } from "../../components/Title";
+import { CalcContainer, Header, NumbersContainer, ResultContainer } from "./styles"
 
 export function Home() {
     const [firstNumber, setfirstNumber] = useState ('')
     const [secondNumber, setSecondNumber] = useState ("")
     const [operator, setOperator] = useState ("")
+    const [result, setResult] = useState("")
 
 
     const handleClickNumber = (number) => {
-        const newNumber = Number((`${firstNumber}${number}`))
-        setfirstNumber(newNumber)
+        if (operator) {
+            const newNumber = Number((`${secondNumber}${number}`))
+            setSecondNumber(newNumber)
+            clearResult()
+        } else {
+            const newNumber = Number((`${firstNumber}${number}`))
+            setfirstNumber(newNumber)
+            clearResult()
+            }
     }
 
     const handleClickOperator = (userOperator)=> {
@@ -18,24 +27,56 @@ export function Home() {
         setOperator(newOperator)
     }
 
-    const handleClickSecondNumber = (param) => {
-        setSecondNumber(param)
-        console.log(secondNumber)
+    const handleClickResult = ()=> {
+        if (operator === "/"){
+            setResult(firstNumber/secondNumber)
+        }
+        if (operator === "*"){
+            setResult(firstNumber*secondNumber)
+        }
+        if (operator === "-"){
+            setResult(firstNumber-secondNumber)
+        }
+        if (operator === "+"){
+            setResult(firstNumber+secondNumber)
+        }
+        clearAll()        
     }
 
+    const clearAll = ()=> {
+        setfirstNumber("")
+        setSecondNumber("")
+        setOperator("")
+    } 
+
+    const clearResult = () => {
+        setResult("")
+    }
+
+    const handleClickAC = ()=>{
+        setfirstNumber("")
+        setSecondNumber("")
+        setOperator("")
+        setResult("")
+    }
 
     return (
         <>
             <Header>
-                Calculadora da Turma de React
+            <Title text='Calculadora da Turma de React' />
             </Header>
+
             <CalcContainer>
                 <ResultContainer>
-                    {operator ? 
-                    <div>{firstNumber}{operator}{secondNumber}</div>
-                    : 
-                    <div>{firstNumber}</div>}
-                    
+                    {result?
+                        <div>{result}</div>
+                        : 
+                        <>{operator ? 
+                            <div>{firstNumber}{operator}{secondNumber}</div>
+                            : 
+                            <div>{firstNumber}</div>}</>
+                    }
+                                            
                 </ResultContainer>
 
                 <NumbersContainer>
@@ -45,7 +86,7 @@ export function Home() {
                     <Button onClick={ ()=> {handleClickNumber(1)}} >1</Button>
                     <Button onClick={ ()=> {handleClickNumber(2)}} >2</Button>
                     <Button onClick={ ()=> {handleClickNumber(3)}} >3</Button>
-                    <Button onClick={ ()=> {handleClickOperator("x")}}>x</Button>
+                    <Button onClick={ ()=> {handleClickOperator("*")}}>x</Button>
                 </NumbersContainer>
                 <NumbersContainer>
                     <Button onClick={ ()=> {handleClickNumber(4)}}>4</Button>
@@ -62,8 +103,8 @@ export function Home() {
                 <NumbersContainer>
                     <Button>.</Button>
                     <Button onClick={ ()=> {handleClickNumber(0)}}>0</Button>
-                    <Button>AC</Button>
-                    <Button>=</Button>
+                    <Button onClick={()=> {handleClickAC()}}>AC</Button>
+                    <Button onClick={()=>{handleClickResult()}}>=</Button>
                 </NumbersContainer>
 
 
